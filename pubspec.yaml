@@ -34,6 +34,8 @@ dependencies:
   get: ^4.6.5 #
   lint: ^2.1.2 #düzenli kod için
   dio: ^5.3.0 #veri tabanı ile bağlantı için
+  http: ^1.1.0
+  turkish: ^0.2.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

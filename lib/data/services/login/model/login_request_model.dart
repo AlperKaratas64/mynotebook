@@ -1,25 +1,19 @@
 import 'dart:convert';
 
-String registerRequestModelToJson(RegisterRequestModel data) =>
+String loginRequestModelToJson(LoginRequestModel data) =>
     json.encode(data.toJson());
 
-class RegisterRequestModel {
+class LoginRequestModel {
   final String username;
-  final String email;
-  final String book;
   final String password;
 
-  RegisterRequestModel({
+  LoginRequestModel({
     required this.username,
-    required this.email,
-    required this.book,
     required this.password,
   });
 
   Map<String, dynamic> toJson() => {
         "username": username,
-        "email": email,
-        "book": book,
         "password": password,
       };
 }

@@ -8,6 +8,8 @@ import 'package:mynotebook/views/register/register_controller.dart';
 class RegisterPage extends GetWidget<RegisterController> {
   static const String routeName = '/views/register/register_page';
 
+  const RegisterPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     controller.isRegister.listen((isRegister) {
@@ -18,7 +20,7 @@ class RegisterPage extends GetWidget<RegisterController> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(registerAppBarText),
+          title: const Text(registerAppBarText),
           backgroundColor: mainColor,
         ),
         body: _buildBody());
@@ -53,15 +55,15 @@ class RegisterPage extends GetWidget<RegisterController> {
     return Material(
       elevation: 10,
       color: white,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(100), topRight: Radius.circular(10)),
       ),
       child: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: TextField(
           textInputAction: TextInputAction.next,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             border: InputBorder.none,
             hintText: userNameText,
           ),
@@ -76,10 +78,10 @@ class RegisterPage extends GetWidget<RegisterController> {
       elevation: 10,
       color: white,
       child: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: TextField(
           textInputAction: TextInputAction.next,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             border: InputBorder.none,
             hintText: emailText,
           ),
@@ -94,10 +96,10 @@ class RegisterPage extends GetWidget<RegisterController> {
       elevation: 10,
       color: white,
       child: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: TextField(
           textInputAction: TextInputAction.next,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             border: InputBorder.none,
             hintText: BookText,
           ),
@@ -111,15 +113,15 @@ class RegisterPage extends GetWidget<RegisterController> {
     return Material(
       elevation: 10,
       color: white,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
             bottomRight: Radius.circular(100), bottomLeft: Radius.circular(10)),
       ),
       child: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: TextField(
           textInputAction: TextInputAction.done,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             border: InputBorder.none,
             hintText: passwordText,
           ),
@@ -133,19 +135,19 @@ class RegisterPage extends GetWidget<RegisterController> {
     return Material(
       elevation: 10,
       color: white,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
             bottomRight: Radius.circular(100), bottomLeft: Radius.circular(10)),
       ),
       child: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: TextField(
           textInputAction: TextInputAction.done,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             border: InputBorder.none,
             hintText: passwordVerifyText,
           ),
-          controller: controller.passwordvirfyController,
+          controller: controller.passwordVerifyController,
         ),
       ),
     );
@@ -174,7 +176,7 @@ class RegisterPage extends GetWidget<RegisterController> {
         onPressed: () => _onTop(),
         child: const Text(registerText),
         style: ElevatedButton.styleFrom(
-          primary: mainColor,
+          backgroundColor: mainColor,
         ),
       ),
     );

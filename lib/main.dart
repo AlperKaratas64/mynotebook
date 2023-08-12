@@ -5,10 +5,12 @@ import 'package:mynotebook/data/routing/get_pages.dart';
 import 'package:mynotebook/views/login/login_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   Future<void> main() async {
     await getControllers();
   }
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       getPages: getPages,
-      home: LoginPage(),
+      home: const LoginPage(),
     );
   }
 }

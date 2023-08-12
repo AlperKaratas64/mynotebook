@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -19,6 +21,7 @@ class DioManager {
         (HttpClient client) {
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
+      return null;
     };
   }
 }
