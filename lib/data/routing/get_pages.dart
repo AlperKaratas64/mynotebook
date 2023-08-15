@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 import 'package:mynotebook/views/add_notes/add_notes_page.dart';
 import 'package:mynotebook/views/home/home_page.dart';
+import 'package:mynotebook/views/info/info_page.dart';
 import 'package:mynotebook/views/login/login_page.dart';
+import 'package:mynotebook/views/profile/profile_page.dart';
 import 'package:mynotebook/views/register/register_page.dart';
 
 List<GetPage> getPages = [
@@ -9,4 +11,6 @@ List<GetPage> getPages = [
   GetPage(name: RegisterPage.routeName, page: () => const RegisterPage()),
   GetPage(name: HomePage.routeName, page: () => const HomePage()),
   GetPage(name: AddNotesPage.routeName, page: () => const AddNotesPage()),
+  GetPage(name: InfoPage.routeName, page: () => const InfoPage()),
+  GetPage(name: ProfilePage.routeName, page: () => const ProfilePage()),
 ];

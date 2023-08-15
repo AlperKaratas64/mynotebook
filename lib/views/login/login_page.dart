@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 import 'package:mynotebook/data/src/colors.dart';
 import 'package:mynotebook/data/src/images.dart';
 import 'package:mynotebook/data/src/strings.dart';
@@ -17,6 +18,9 @@ class LoginPage extends GetWidget<LoginController> {
     controller.error.listen((error) => _errorDialog);
     controller.isLogin.listen((isLogin) {
       if (isLogin) _goToHomePage();
+    });
+    controller.errorTexts.listen((errorTexts) {
+      if (errorTexts != null) _errorTextDialog(errorTexts);
     });
     return Scaffold(
         appBar: AppBar(
@@ -117,10 +121,15 @@ class LoginPage extends GetWidget<LoginController> {
       height: size,
       child: ElevatedButton(
         onPressed: () {
-          controller.callingLoginService(
-            controller.usernameController.text,
-            controller.passwordController.text,
-          );
+          if (controller.usernameController.text.isNotEmpty &&
+              controller.passwordController.text.isNotEmpty) {
+            controller.callingLoginService(
+              controller.usernameController.text,
+              controller.passwordController.text,
+            );
+          } else {
+            _emptyDialog();
+          }
         },
         child: const Text(LoginButton),
         style: ElevatedButton.styleFrom(
@@ -164,13 +173,31 @@ class LoginPage extends GetWidget<LoginController> {
   }
 
   void _goToHomePage() {
-    Get.toNamed(HomePage.routeName);
+    Get.offAndToNamed(HomePage.routeName);
   }
 
   void _errorDialog() {
     Get.snackbar(
       errorTitle,
       errorDescription,
+      colorText: white,
+      backgroundColor: red,
+    );
+  }
+
+  void _emptyDialog() {
+    Get.snackbar(
+      errorTitle,
+      emptyText,
+      colorText: white,
+      backgroundColor: red,
+    );
+  }
+
+  void _errorTextDialog(String description) {
+    Get.snackbar(
+      errorTitle,
+      description,
       colorText: white,
       backgroundColor: red,
     );

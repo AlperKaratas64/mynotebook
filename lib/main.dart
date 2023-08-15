@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:mynotebook/data/get_controllers.dart';
 import 'package:mynotebook/data/routing/get_pages.dart';
+import 'package:mynotebook/views/home/home_page.dart';
 import 'package:mynotebook/views/login/login_page.dart';
 
 void main() {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       getPages: getPages,
-      home: const LoginPage(),
+      home: const HomePage(),
     );
   }
 }
