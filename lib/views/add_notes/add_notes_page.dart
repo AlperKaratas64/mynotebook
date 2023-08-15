@@ -47,7 +47,7 @@ class AddNotesPage extends GetWidget<AddNotesController> {
   }
 
   Widget _buildTitleText() {
-    return Text(
+    return const Text(
       addNoteTitleText,
       style: TextStyle(fontSize: 16),
     );
