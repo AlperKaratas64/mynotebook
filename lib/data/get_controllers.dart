@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:http/http.dart';
+import 'package:mynotebook/data/services/add_notes/add_notes_service.dart';
 import 'package:mynotebook/data/services/dio_manager.dart';
 import 'package:mynotebook/data/services/login/login_service.dart';
 import 'package:mynotebook/data/services/register/register_service.dart';
@@ -15,11 +16,12 @@ Future getControllers() async {
       permanent: false); //permant verilerin saklanıp saklanmamasını belirtir.
   Get.create(() => RegisterController(Get.find()), permanent: false);
   Get.create(() => HomeController(), permanent: false);
-  Get.create(() => AddNotesController(), permanent: false);
+  Get.create(() => AddNotesController(Get.find()), permanent: false);
   Get.create(() => InfoController(), permanent: false);
   Get.create(() => ProfileController(), permanent: false);
 
   Get.lazyPut(() => DioManager(), fenix: true);
-  Get.lazyPut<RegisterService>(() => RegisterServiceImp());
-  Get.lazyPut<LoginService>(() => LoginServiceImp());
+  Get.lazyPut<RegisterService>(() => RegisterServiceImp(Get.find()));
+  Get.lazyPut<LoginService>(() => LoginServiceImp(Get.find()));
+  Get.lazyPut<AddNotesService>(() => AddNotesServiceImp(Get.find()));
 }

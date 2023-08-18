@@ -7,6 +7,8 @@ abstract class AddNotesService {
 }
 
 class AddNotesServiceImp extends AddNotesService {
+  AddNotesServiceImp(find);
+
   @override
   Future addNotes(AddNotesRequestModel addNotesRequestModel) async {
     const String _baseUrl = 'http://tozlukitabım.com/notebook/add_notes.php';

@@ -3,12 +3,17 @@ import 'package:get/get.dart';
 import 'package:mynotebook/data/src/colors.dart';
 import 'package:mynotebook/data/src/strings.dart';
 import 'package:mynotebook/views/add_notes/add_notes_controller.dart';
+import 'package:mynotebook/views/home/home_page.dart';
 
 class AddNotesPage extends GetWidget<AddNotesController> {
   const AddNotesPage({super.key});
   static const String routeName = '/views/add_notes/add_notes_Page';
   @override
   Widget build(BuildContext context) {
+    controller.isSave.listen(
+      (isSave) => isSave ? _goToHome() : _empty(),
+    );
+    controller.error.listen((error) => _errorDialog());
     return Scaffold(
         appBar: AppBar(
           title: Text(addNotesBarText),
@@ -20,28 +25,31 @@ class AddNotesPage extends GetWidget<AddNotesController> {
   Widget _buildBody() {
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildTitleText(),
-                _buildSizedBox(),
-                _buildTextFieldTitle(),
-                _buildSizedBox(),
-                Divider(),
-                _buildSizedBox(),
-                _buildDescription(),
-                _buildSizedBox(),
-                _buildTextFieldDescription(),
-              ],
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildTitleText(),
+                  _buildSizedBox(),
+                  _buildTextFieldTitle(),
+                  _buildSizedBox(),
+                  Divider(),
+                  _buildSizedBox(),
+                  _buildDescription(),
+                  _buildSizedBox(),
+                  _buildTextFieldDescription(),
+                ],
+              ),
             ),
-          ),
-          _buildButton(),
-        ],
+            _buildButton(),
+          ],
+        ),
       ),
     );
   }
@@ -92,7 +100,7 @@ class AddNotesPage extends GetWidget<AddNotesController> {
     return SizedBox(
       height: size,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () => _onTap(),
         child: Text(addNoteSaveButton),
         style: ElevatedButton.styleFrom(
           primary: mainColor,
@@ -101,9 +109,45 @@ class AddNotesPage extends GetWidget<AddNotesController> {
     );
   }
 
+  void _onTap() {
+    if (controller.titleController.text.isNotEmpty ||
+        controller.decriptionController.text.isNotEmpty) {
+      controller.callingAddNoteService(
+        controller.titleController.text,
+        controller.decriptionController.text,
+      );
+    } else {
+      _emptyDialog();
+    }
+  }
+
+  void _emptyDialog() {
+    Get.snackbar(
+      errorTitle,
+      emptyText,
+      colorText: white,
+      backgroundColor: red,
+    );
+  }
+
+  void _errorDialog() {
+    Get.snackbar(
+      errorTitle,
+      errorDescription,
+      colorText: white,
+      backgroundColor: red,
+    );
+  }
+
+  void _goToHome() {
+    Get.toNamed(HomePage.routeName);
+  }
+
   Widget _buildSizedBox() {
     return const SizedBox(
       height: 20,
     );
   }
+
+  void _empty() {}
 }

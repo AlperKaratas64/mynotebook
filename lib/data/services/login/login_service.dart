@@ -7,6 +7,8 @@ abstract class LoginService {
 }
 
 class LoginServiceImp extends LoginService {
+  LoginServiceImp(find);
+
   @override
   Future login(LoginRequestModel loginRequestModel) async {
     const String _baseUrl = 'http://tozlukitabım.com/notebook/login.php';

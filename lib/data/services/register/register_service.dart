@@ -7,6 +7,8 @@ abstract class RegisterService {
 }
 
 class RegisterServiceImp extends RegisterService {
+  RegisterServiceImp(find);
+
   @override
   Future register(RegisterRequestModel registerRequestModel) async {
     const String _baseUrl =
